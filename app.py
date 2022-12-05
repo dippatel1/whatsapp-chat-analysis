@@ -127,8 +127,13 @@ if uploaded_file is not None:
             ax.pie(emoji_df[1].head(),labels=emoji_df[0].head(),autopct="%0.2f")
             st.pyplot(fig)
 
-        st.title(" Brief Summary")
+        st.title("All chats")
         st.write("hey this is the summarization app")
+        final_str=helper.get_data_in_conversation(df[:400])
+
+        st.write(final_str)
+        st.title("Summary")
+        st.write(helper.get_summary(final_str))
 
 
 

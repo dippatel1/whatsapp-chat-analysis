@@ -3,7 +3,7 @@ from wordcloud import WordCloud
 import pandas as pd
 from collections import Counter
 import emoji
-
+from transformers import pipeline
 extract = URLExtract()
 
 def fetch_stats(selected_user,df):
@@ -141,9 +141,17 @@ def activity_heatmap(selected_user,df):
     return user_heatmap
 
 
+def get_data_in_conversation(df):
+    final_str=""
+    for i in range(0,df.shape[0]):
+        final_str+=(df['user'][i]+":"+df['message'][i]+".")
+    return final_str
 
 
 
+def get_summary(final_str):
+    summarizer = pipeline("summarization", model="jdminor/autotrain-t5-large-summary-2338073717")
+    return summarizer(final_str)
 
 
 

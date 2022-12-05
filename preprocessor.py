@@ -2,11 +2,11 @@ import re
 import pandas as pd
 
 def preprocess(data):
-    print(data)
+ 
     pattern = '\d{1,2}/\d{1,2}/\d{2,4},\s\d{1,2}:\d{2}\s-\s'
 
     messages = re.split(pattern, data)[1:]
-    print(messages)
+   
     dates = re.findall(pattern, data)
 
     for i in range(0,len(dates)):
@@ -19,8 +19,8 @@ def preprocess(data):
 
     for i in  range(0,len(dates)):
         date_str=dates[i]
-        print(type(date_str))
-        print(date_str)
+       
+       
         date_obj=datetime.strptime(date_str,'%m/%d/%y, %H:%M')
         dates[i]=date_obj
     
